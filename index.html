@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact Ansh Legal · Enquiry form (POC)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#14107a; --navy-deep:#0b0860; --maroon:#7a2b29; --maroon-soft:#f5e9e8;
+  --bg:#f4f5fa; --surface:#ffffff; --ink:#1b1d2a; --muted:#5a5f73; --line:#d9dce8;
+  --accent:#14107a; --accent-soft:#ecebfa; --danger:#a3261f; --ok:#1d6b45;
+  --rail-bg:#14107a; --rail-ink:#ffffff; --rail-muted:#bcbbe6;
+  --serif:"Cormorant Garamond","Times New Roman",Georgia,serif;
+  --sans:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d0f22; --surface:#161935; --ink:#e9eaf3; --muted:#a4a8c0; --line:#2d3155;
+    --accent:#aaa7ff; --accent-soft:#23265a; --maroon:#e3928d; --maroon-soft:#3a2230;
+    --danger:#ff8f86; --ok:#7fd3a6; --rail-bg:#10124a; --rail-muted:#9c9bd6;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d0f22; --surface:#161935; --ink:#e9eaf3; --muted:#a4a8c0; --line:#2d3155;
+  --accent:#aaa7ff; --accent-soft:#23265a; --maroon:#e3928d; --maroon-soft:#3a2230;
+  --danger:#ff8f86; --ok:#7fd3a6; --rail-bg:#10124a; --rail-muted:#9c9bd6;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--maroon);outline-offset:2px}
+
+/* Header */
+.site-header{background:#fff;border-bottom:1px solid #e3e5ee;position:sticky;top:env(safe-area-inset-top,0px);z-index:10}
+.site-header .in{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:24px}
+.logo img{height:40px;width:auto;display:block}
+.nav{display:flex;gap:22px;margin-left:auto;font-size:14.5px}
+.nav a{color:#2a2c3d;text-decoration:none}
+.nav a[aria-current]{color:#14107a;font-weight:600;box-shadow:inset 0 -2px 0 #7a2b29}
+.hdr-cta{background:#7a2b29;color:#fff;text-decoration:none;padding:9px 16px;border-radius:4px;font-size:14px;font-weight:600;white-space:nowrap}
+@media (max-width:900px){.nav{display:none}.hdr-cta{margin-left:auto}}
+
+/* Intro */
+.intro{max-width:1180px;margin:0 auto;padding:44px 24px 20px}
+.intro h1{font-family:var(--serif);font-weight:600;font-size:clamp(34px,5vw,50px);line-height:1.05;margin:0 0 10px;color:var(--ink);letter-spacing:-.01em}
+.intro p{margin:0;max-width:62ch;color:var(--muted);font-size:17px}
+
+/* Shell */
+.shell{max-width:1180px;margin:0 auto;padding:12px 24px 64px;display:grid;grid-template-columns:320px 1fr;gap:28px;align-items:start}
+@media (max-width:900px){.shell{grid-template-columns:1fr}}
+
+/* Rail */
+.rail{background:var(--rail-bg);color:var(--rail-ink);border-radius:6px;padding:28px 26px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 88px)}
+@media (max-width:900px){.rail{position:static;padding:18px 20px}}
+.steps{list-style:none;margin:0;padding:0;position:relative}
+.steps::before{content:"";position:absolute;left:13px;top:14px;bottom:14px;width:2px;background:rgba(255,255,255,.18)}
+.steps li{position:relative;display:flex;gap:14px;align-items:flex-start;padding:7px 0}
+.steps .dot{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;background:var(--rail-bg);border:2px solid rgba(255,255,255,.35);color:var(--rail-muted);position:relative;z-index:1}
+.steps button{all:unset;cursor:default;display:block;padding-top:3px}
+.steps .t{font-size:15px;font-weight:600;color:var(--rail-muted)}
+.steps .v{display:block;font-size:13px;color:#fff;opacity:.85;margin-top:1px;max-width:220px}
+.steps li.done .dot{background:#fff;border-color:#fff;color:#14107a}
+.steps li.done button{cursor:pointer}
+.steps li.done button:hover .t{text-decoration:underline}
+.steps li.done .t{color:#fff}
+.steps li.current .dot{border-color:#fff;color:#fff;background:#7a2b29}
+.steps li.current .t{color:#fff}
+.rail-foot{margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.18);font-size:13.5px;color:var(--rail-muted)}
+.rail-foot strong{color:#fff;font-weight:600}
+.rail-foot p{margin:0 0 10px}
+.rail-foot a{color:#fff}
+.mobile-progress{display:none}
+@media (max-width:900px){
+  .steps{display:none}
+  .mobile-progress{display:block}
+  .mobile-progress .row{display:flex;justify-content:space-between;font-size:14px;margin-bottom:8px}
+  .mobile-progress .bar{height:4px;background:rgba(255,255,255,.2);border-radius:2px;overflow:hidden}
+  .mobile-progress .bar i{display:block;height:100%;background:#fff;transition:width .3s}
+  .rail-foot{display:none}
+}
+
+/* Card */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:34px 36px 28px;min-height:420px}
+@media (max-width:600px){.panel{padding:24px 20px}}
+.step{display:none}
+.step.active{display:block;animation:in .28s ease-out}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.step.active{animation:none}}
+.step h2{font-family:var(--serif);font-weight:600;font-size:32px;line-height:1.1;margin:0 0 6px}
+.step .lede{margin:0 0 26px;color:var(--muted);max-width:60ch}
+fieldset{border:0;margin:0 0 26px;padding:0;min-width:0}
+legend,.lbl{font-weight:600;font-size:15px;margin-bottom:10px;padding:0;display:block}
+.hint{font-weight:400;color:var(--muted);font-size:14px}
+.opt-tag{font-weight:400;color:var(--muted);font-size:13px;margin-left:6px}
+
+/* Choice cards */
+.choices{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+.choices.tight{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+.choice{position:relative}
+.choice input{position:absolute;opacity:0;inset:0;margin:0;pointer-events:none}
+.choice label{display:block;height:100%;border:1.5px solid var(--line);border-radius:5px;padding:14px 16px;cursor:pointer;background:var(--surface);transition:border-color .15s,background .15s}
+.choice .n{display:block;font-weight:600;font-size:15.5px}
+.choice .d{display:block;color:var(--muted);font-size:13.5px;margin-top:3px;line-height:1.4}
+.choice label:hover{border-color:var(--accent)}
+.choice input:checked + label{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 4px 0 0 var(--maroon)}
+.choice input:focus-visible + label{outline:3px solid var(--maroon);outline-offset:2px}
+.choice.unsure label{border-style:dashed}
+
+/* Inputs */
+.field{margin-bottom:20px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+@media (max-width:600px){.grid2{grid-template-columns:1fr}}
+input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{
+  width:100%;font:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:5px;padding:11px 13px;
+}
+textarea{min-height:120px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.phone{display:grid;grid-template-columns:120px 1fr;gap:8px}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;margin-bottom:12px}
+.check input{width:18px;height:18px;margin-top:3px;accent-color:var(--navy);flex:none}
+.err{display:none;color:var(--danger);font-size:13.5px;margin-top:6px}
+.invalid .err{display:block}
+.invalid input,.invalid select,.invalid textarea{border-color:var(--danger)}
+.counter{text-align:right;font-size:12.5px;color:var(--muted);margin-top:4px}
+
+.note{border-left:3px solid var(--maroon);background:var(--maroon-soft);padding:12px 16px;border-radius:0 4px 4px 0;font-size:14px;margin:0 0 22px}
+.route-note{display:none;border:1px solid var(--accent);background:var(--accent-soft);border-radius:5px;padding:12px 16px;font-size:14.5px;margin-top:14px}
+.route-note.show{display:block}
+
+/* Actions */
+.actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:10px;padding-top:22px;border-top:1px solid var(--line)}
+.btn{font:600 15px var(--sans);border-radius:5px;padding:12px 22px;cursor:pointer;border:1.5px solid transparent}
+.btn-primary{background:#14107a;color:#fff}
+.btn-primary:hover{background:#0b0860}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-maroon{background:#7a2b29;color:#fff}
+.save-state{font-size:13px;color:var(--muted)}
+@media (max-width:600px){.save-state{display:none}}
+
+/* Review */
+.review{border:1px solid var(--line);border-radius:5px;margin-bottom:22px}
+.review section{padding:16px 18px;border-bottom:1px solid var(--line)}
+.review section:last-child{border-bottom:0}
+.review .hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.review h3{margin:0;font-size:15px}
+.review .edit{background:none;border:0;color:var(--accent);font:600 14px var(--sans);cursor:pointer;text-decoration:underline;padding:0}
+.review dl{margin:0;display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:6px 16px;font-size:14.5px}
+.review dt{color:var(--muted)}
+.review dd{margin:0;overflow-wrap:anywhere}
+
+/* Confirmation */
+.done-wrap{text-align:left}
+.seal{width:56px;height:56px;border-radius:50%;background:var(--accent-soft);display:grid;place-items:center;margin-bottom:18px}
+.ref{display:inline-block;font-weight:700;letter-spacing:.04em;background:var(--accent-soft);color:var(--accent);padding:4px 10px;border-radius:4px}
+.next{list-style:none;padding:0;margin:22px 0;counter-reset:n}
+.next li{counter-increment:n;display:flex;gap:14px;margin-bottom:14px}
+.next li::before{content:counter(n);flex:none;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--maroon);color:var(--maroon);display:grid;place-items:center;font-size:13px;font-weight:700}
+.dev{margin-top:22px;border-top:1px solid var(--line);padding-top:16px}
+.dev summary{cursor:pointer;font-size:14px;color:var(--muted)}
+.dev pre{background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:14px;font-size:12.5px;overflow-x:auto;max-width:100%}
+
+.poc{max-width:1180px;margin:0 auto;padding:0 24px 40px;font-size:13px;color:var(--muted)}
+.poc a{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="in">
+    <a class="logo" href="https://anshlegal.com/" aria-label="Ansh Legal home"><img src="data:image/png;base64,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" alt="Ansh Legal"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#">Home</a><a href="#">About us</a><a href="#">Practice areas</a><a href="#">Our team</a><a href="#">Insights</a><a href="#" aria-current="page">Contact us</a>
+    </nav>
+    <a class="hdr-cta" href="#enquiry">Book a consultation</a>
+  </div>
+</header>
+
+<div class="intro">
+  <h1>Tell us what you need, and we'll connect you with the right lawyer</h1>
+  <p>Answer a few short questions. It takes about two minutes, and your enquiry goes straight to the team that handles matters like yours.</p>
+</div>
+
+<main class="shell" id="enquiry">
+  <aside class="rail" aria-label="Enquiry progress">
+    <div class="mobile-progress" aria-hidden="true">
+      <div class="row"><span id="mpLabel">Step 1 of 6</span><span id="mpName">About you</span></div>
+      <div class="bar"><i id="mpBar" style="width:16%"></i></div>
+    </div>
+    <ol class="steps" id="stepList"></ol>
+    <div class="rail-foot">
+      <p><strong>Prefer to talk now?</strong></p>
+      <p>Abu Dhabi (ADGM)<br><a href="tel:+971565580209">+971 56 558 0209</a></p>
+      <p>London<br><a href="tel:+447766749869">+44 7766 749869</a></p>
+      <p><a href="https://wa.me/971565580209" target="_blank" rel="noopener">Message us on WhatsApp</a></p>
+      <p>Monday to Friday<br>9:00 to 18:00 GST (Abu Dhabi)<br>9:00 to 17:30 GMT (London)</p>
+    </div>
+  </aside>
+
+  <form class="panel" id="form" novalidate>
+
+    <!-- STEP 1 -->
+    <div class="step" data-step="0">
+      <h2>About you</h2>
+      <p class="lede">This helps us understand the kind of advice you're likely to need.</p>
+      <fieldset data-required="clientType">
+        <legend>Who are you enquiring for?</legend>
+        <div class="choices">
+          <div class="choice"><input type="radio" name="clientType" id="ct1" value="individual"><label for="ct1"><span class="n">Myself or my family</span><span class="d">A personal or family matter</span></label></div>
+          <div class="choice"><input type="radio" name="clientType" id="ct2" value="startup"><label for="ct2"><span class="n">A startup or small business</span><span class="d">Founders, SMEs and new ventures</span></label></div>
+          <div class="choice"><input type="radio" name="clientType" id="ct3" value="company"><label for="ct3"><span class="n">An established company</span><span class="d">Corporates, groups and in-house teams</span></label></div>
+          <div class="choice"><input type="radio" name="clientType" id="ct4" value="institution"><label for="ct4"><span class="n">A financial institution or fund</span><span class="d">Banks, asset managers, fintechs</span></label></div>
+        </div>
+        <p class="err">Choose the option that best describes you.</p>
+      </fieldset>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" data-step="1">
+      <h2>What do you need help with?</h2>
+      <p class="lede">Pick the closest match. If you're unsure, choose the last option and we'll route it for you.</p>
+      <fieldset data-required="service">
+        <legend class="sr">Area of law</legend>
+        <div class="choices" id="serviceChoices"></div>
+        <p class="err">Choose an area, or pick "I'm not sure yet".</p>
+      </fieldset>
+      <fieldset id="unsureBlock" hidden data-required="situation">
+        <legend>Which of these sounds most like your situation?</legend>
+        <div class="choices tight" id="situationChoices"></div>
+        <p class="err">Choose the closest situation so we can route your enquiry.</p>
+        <div class="route-note" id="routeNote" role="status"></div>
+      </fieldset>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" data-step="2">
+      <h2>About your matter</h2>
+      <p class="lede" id="detailsLede">A few specifics help the right lawyer prepare before contacting you.</p>
+
+      <!-- Corporate -->
+      <div data-for="corporate" hidden>
+        <fieldset data-required="corpType">
+          <legend>What kind of corporate work is this?</legend>
+          <div class="choices tight">
+            <div class="choice"><input type="radio" name="corpType" id="co1" value="Company formation"><label for="co1"><span class="n">Setting up a company</span></label></div>
+            <div class="choice"><input type="radio" name="corpType" id="co2" value="M&A"><label for="co2"><span class="n">Buying or selling a business</span></label></div>
+            <div class="choice"><input type="radio" name="corpType" id="co3" value="Restructuring"><label for="co3"><span class="n">Restructuring</span></label></div>
+            <div class="choice"><input type="radio" name="corpType" id="co4" value="Shareholder matters"><label for="co4"><span class="n">Shareholder or investor matters</span></label></div>
+            <div class="choice"><input type="radio" name="corpType" id="co5" value="Other corporate"><label for="co5"><span class="n">Something else</span></label></div>
+          </div>
+          <p class="err">Choose the type of corporate work.</p>
+        </fieldset>
+        <div class="field">
+          <label class="lbl" for="corpWhere">Where is (or will) the company be based?</label>
+          <select id="corpWhere" name="corpWhere"><option value="">Select a location</option><option>ADGM, Abu Dhabi</option><option>DIFC, Dubai</option><option>UAE mainland</option><option>UAE free zone (other)</option><option>United Kingdom</option><option>Elsewhere</option><option>Not decided yet</option></select>
+        </div>
+      </div>
+
+      <!-- Commercial -->
+      <div data-for="commercial" hidden>
+        <fieldset data-required="commType">
+          <legend>What do you need done?</legend>
+          <div class="choices tight">
+            <div class="choice"><input type="radio" name="commType" id="cm1" value="Draft a contract"><label for="cm1"><span class="n">Draft a new contract</span></label></div>
+            <div class="choice"><input type="radio" name="commType" id="cm2" value="Review a contract"><label for="cm2"><span class="n">Review a contract I've received</span></label></div>
+            <div class="choice"><input type="radio" name="commType" id="cm3" value="Negotiate terms"><label for="cm3"><span class="n">Help negotiating terms</span></label></div>
+            <div class="choice"><input type="radio" name="commType" id="cm4" value="Exit or terminate"><label for="cm4"><span class="n">Exit or end an agreement</span></label></div>
+          </div>
+          <p class="err">Choose what you need done.</p>
+        </fieldset>
+        <div class="field">
+          <label class="lbl" for="commKind">Type of agreement <span class="opt-tag">optional</span></label>
+          <input type="text" id="commKind" name="commKind" placeholder="For example: distribution, services, NDA, joint venture">
+        </div>
+      </div>
+
+      <!-- Finance -->
+      <div data-for="finance" hidden>
+        <fieldset data-required="finType">
+          <legend>What kind of transaction is it?</legend>
+          <div class="choices tight">
+            <div class="choice"><input type="radio" name="finType" id="fi1" value="Lending / borrowing"><label for="fi1"><span class="n">Lending or borrowing</span></label></div>
+            <div class="choice"><input type="radio" name="finType" id="fi2" value="Fund structuring"><label for="fi2"><span class="n">Setting up a fund</span></label></div>
+            <div class="choice"><input type="radio" name="finType" id="fi3" value="Security & guarantees"><label for="fi3"><span class="n">Security or guarantees</span></label></div>
+            <div class="choice"><input type="radio" name="finType" id="fi4" value="Islamic finance"><label for="fi4"><span class="n">Islamic finance</span></label></div>
+            <div class="choice"><input type="radio" name="finType" id="fi5" value="Other finance"><label for="fi5"><span class="n">Something else</span></label></div>
+          </div>
+          <p class="err">Choose the type of transaction.</p>
+        </fieldset>
+        <div class="field">
+          <label class="lbl" for="finValue">Approximate deal size <span class="opt-tag">optional</span></label>
+          <select id="finValue" name="finValue"><option value="">Prefer not to say</option><option>Under USD 1m</option><option>USD 1m to 10m</option><option>USD 10m to 50m</option><option>Over USD 50m</option></select>
+        </div>
+      </div>
+
+      <!-- Regulatory -->
+      <div data-for="regulatory" hidden>
+        <div class="field" data-required-field="regulator">
+          <label class="lbl" for="regulator">Which regulator is involved?</label>
+          <select id="regulator" name="regulator"><option value="">Select a regulator</option><option>ADGM, FSRA</option><option>DIFC, DFSA</option><option>UAE Central Bank (CBUAE)</option><option>UAE Securities and Commodities Authority (SCA)</option><option>VARA (virtual assets)</option><option>UK, FCA</option><option>Not sure</option></select>
+          <p class="err">Choose a regulator, or "Not sure".</p>
+        </div>
+        <p class="hint" style="margin:-8px 0 20px">Deciding between ADGM and DIFC? <a href="https://anshlegal.com/adgm-vs-difc" target="_blank" rel="noopener">Read our comparison</a>.</p>
+        <fieldset data-required="regStage">
+          <legend>Where are you in the process?</legend>
+          <div class="choices tight">
+            <div class="choice"><input type="radio" name="regStage" id="rg1" value="Exploring options"><label for="rg1"><span class="n">Exploring options</span></label></div>
+            <div class="choice"><input type="radio" name="regStage" id="rg2" value="Preparing an application"><label for="rg2"><span class="n">Preparing a licence application</span></label></div>
+            <div class="choice"><input type="radio" name="regStage" id="rg3" value="Already licensed – compliance"><label for="rg3"><span class="n">Already licensed, need compliance help</span></label></div>
+            <div class="choice"><input type="radio" name="regStage" id="rg4" value="Regulator enquiry"><label for="rg4"><span class="n">Responding to the regulator</span></label></div>
+          </div>
+          <p class="err">Choose where you are in the process.</p>
+        </fieldset>
+      </div>
+
+      <!-- Disputes -->
+      <div data-for="disputes" hidden>
+        <fieldset data-required="dispStage">
+          <legend>What stage is the dispute at?</legend>
+          <div class="choices tight">
+            <div class="choice"><input type="radio" name="dispStage" id="ds1" value="Pre-action"><label for="ds1"><span class="n">No proceedings yet</span></label></div>
+            <div class="choice"><input type="radio" name="dispStage" id="ds2" value="Court proceedings"><label for="ds2"><span class="n">Court case under way</span></label></div>
+            <div class="choice"><input type="radio" name="dispStage" id="ds3" value="Arbitration"><label for="ds3"><span class="n">Arbitration under way</span></label></div>
+            <div class="choice"><input type="radio" name="dispStage" id="ds4" value="Enforcement"><label for="ds4"><span class="n">Enforcing a judgment or award</span></label></div>
+          </div>
+          <p class="err">Choose the current stage.</p>
+        </fieldset>
+        <div class="grid2">
+          <div class="field" data-required-field="opposing">
+            <label class="lbl" for="opposing">Name of the other party</label>
+            <input type="text" id="opposing" name="opposing" placeholder="Person or company">
+            <p class="hint" style="margin:6px 0 0">We use this only to check for conflicts of interest.</p>
+            <p class="err">Enter the other party's name so we can run a conflict check.</p>
+          </div>
+          <div class="field">
+            <label class="lbl" for="deadline">Any upcoming deadline? <span class="opt-tag">optional</span></label>
+            <input type="date" id="deadline" name="deadline">
+          </div>
+        </div>
+      </div>
+
+      <!-- Private -->
+      <div data-for="private" hidden>
+        <fieldset data-required="privType">
+          <legend>What is it about?</legend>
+          <div class="choices tight">
+            <div class="choice"><input type="radio" name="privType" id="pv1" value="Wills & succession"><label for="pv1"><span class="n">Wills and succession</span></label></div>
+            <div class="choice"><input type="radio" name="privType" id="pv2" value="Family matters"><label for="pv2"><span class="n">Family matters</span></label></div>
+            <div class="choice"><input type="radio" name="privType" id="pv3" value="Property"><label for="pv3"><span class="n">Buying or selling property</span></label></div>
+            <div class="choice"><input type="radio" name="privType" id="pv4" value="Wealth structuring"><label for="pv4"><span class="n">Structuring personal wealth</span></label></div>
+            <div class="choice"><input type="radio" name="privType" id="pv5" value="Other private"><label for="pv5"><span class="n">Something else</span></label></div>
+          </div>
+          <p class="err">Choose what your matter is about.</p>
+        </fieldset>
+      </div>
+
+      <div class="field" data-required-field="summary">
+        <label class="lbl" for="summary">Briefly describe what you need</label>
+        <textarea id="summary" name="summary" maxlength="1200" placeholder="A few sentences is enough. What has happened, and what outcome are you looking for?"></textarea>
+        <div class="counter"><span id="sumCount">0</span> / 1200</div>
+        <p class="err">Add a short description, at least 20 characters.</p>
+      </div>
+      <p class="note">Please don't include confidential or sensitive details yet. We'll ask for these once we've confirmed we can act for you.</p>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step" data-step="3">
+      <h2>Timing and how to reach you</h2>
+      <p class="lede">We'll use this to prioritise your enquiry and contact you the way you prefer.</p>
+      <fieldset data-required="office">
+        <legend>Which office would you like to deal with?</legend>
+        <div class="choices tight">
+          <div class="choice"><input type="radio" name="office" id="of1" value="uae"><label for="of1"><span class="n">Abu Dhabi, UAE</span><span class="d">ADGM office</span></label></div>
+          <div class="choice"><input type="radio" name="office" id="of2" value="uk"><label for="of2"><span class="n">London, UK</span></label></div>
+          <div class="choice"><input type="radio" name="office" id="of3" value="both"><label for="of3"><span class="n">Both</span><span class="d">A cross-border matter</span></label></div>
+          <div class="choice unsure"><input type="radio" name="office" id="of4" value="any"><label for="of4"><span class="n">No preference</span></label></div>
+        </div>
+        <p class="err">Choose an office, or "No preference".</p>
+      </fieldset>
+      <fieldset data-required="urgency">
+        <legend>How urgent is this?</legend>
+        <div class="choices tight">
+          <div class="choice"><input type="radio" name="urgency" id="ur1" value="urgent"><label for="ur1"><span class="n">Urgent</span><span class="d">I need help within 48 hours</span></label></div>
+          <div class="choice"><input type="radio" name="urgency" id="ur2" value="soon"><label for="ur2"><span class="n">In the next few weeks</span></label></div>
+          <div class="choice"><input type="radio" name="urgency" id="ur3" value="exploring"><label for="ur3"><span class="n">Just exploring</span></label></div>
+        </div>
+        <p class="err">Tell us how urgent this is.</p>
+      </fieldset>
+      <div class="grid2">
+        <fieldset data-required="contactPref" style="margin-bottom:20px">
+          <legend>Best way to contact you</legend>
+          <div class="choices" style="grid-template-columns:1fr 1fr 1fr">
+            <div class="choice"><input type="radio" name="contactPref" id="cp1" value="Phone call"><label for="cp1"><span class="n">Call</span></label></div>
+            <div class="choice"><input type="radio" name="contactPref" id="cp2" value="Email"><label for="cp2"><span class="n">Email</span></label></div>
+            <div class="choice"><input type="radio" name="contactPref" id="cp3" value="WhatsApp"><label for="cp3"><span class="n">WhatsApp</span></label></div>
+          </div>
+          <p class="err">Choose how we should contact you.</p>
+        </fieldset>
+        <div class="field">
+          <label class="lbl" for="bestTime">Best time to reach you <span class="opt-tag">optional</span></label>
+          <select id="bestTime" name="bestTime"><option value="">Any time in office hours</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step" data-step="4">
+      <h2>Your details</h2>
+      <p class="lede">So the lawyer handling your enquiry can get back to you.</p>
+      <div class="grid2">
+        <div class="field" data-required-field="fullName">
+          <label class="lbl" for="fullName">Full name</label>
+          <input type="text" id="fullName" name="fullName" autocomplete="name">
+          <p class="err">Enter your full name.</p>
+        </div>
+        <div class="field" id="companyField">
+          <label class="lbl" for="company">Company or organisation</label>
+          <input type="text" id="company" name="company" autocomplete="organization">
+          <p class="err">Enter your company or organisation name.</p>
+        </div>
+        <div class="field" data-required-field="email">
+          <label class="lbl" for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="name@company.com">
+          <p class="err">Enter a valid email address, like name@company.com.</p>
+        </div>
+        <div class="field" data-required-field="phone">
+          <label class="lbl" for="phone">Phone</label>
+          <div class="phone">
+            <select id="dial" name="dial" aria-label="Country code"><option value="+971">🇦🇪 +971</option><option value="+44">🇬🇧 +44</option><option value="+91">🇮🇳 +91</option><option value="+966">🇸🇦 +966</option><option value="+974">🇶🇦 +974</option><option value="+1">🇺🇸 +1</option><option value="+">Other</option></select>
+            <input type="tel" id="phone" name="phone" autocomplete="tel-national" placeholder="50 123 4567">
+          </div>
+          <p class="err">Enter a phone number of 7 to 15 digits.</p>
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:8px">
+        <label class="lbl" for="heard">How did you hear about us? <span class="opt-tag">optional</span></label>
+        <select id="heard" name="heard"><option value="">Select an option</option><option>Search engine</option><option>LinkedIn</option><option>Referral</option><option>Event or seminar</option><option>Existing client</option><option>Other</option></select>
+      </div>
+      <div class="field" data-required-field="consent" style="margin-top:22px">
+        <label class="check"><input type="checkbox" id="consent" name="consent"> <span>I agree that Ansh Legal may use these details to respond to my enquiry, as set out in the <a href="https://anshlegal.com/privacy-policy" target="_blank" rel="noopener">privacy policy</a>.</span></label>
+        <p class="err" style="margin-top:-4px">Tick this box so we can respond to your enquiry.</p>
+      </div>
+      <p class="note">Submitting this form does not create a lawyer–client relationship. That begins only once we've completed conflict checks and confirmed our engagement in writing.</p>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="step" data-step="5">
+      <h2>Check your enquiry</h2>
+      <p class="lede">Make sure everything is right before you send it.</p>
+      <div class="review" id="review"></div>
+    </div>
+
+    <!-- DONE -->
+    <div class="step" data-step="6">
+      <div class="done-wrap">
+        <div class="seal" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" style="color:var(--accent)"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h2>Enquiry sent</h2>
+        <p class="lede" style="margin-bottom:12px">Thank you, <span id="dName"></span>. Your reference is <span class="ref" id="dRef"></span>.</p>
+        <p style="margin:0" id="dRoute"></p>
+        <ol class="next">
+          <li><span>We'll send a confirmation to <strong id="dEmail"></strong> in the next few minutes.</span></li>
+          <li><span id="dSla"></span></li>
+          <li><span>If we can act for you, we'll confirm scope, fees and next steps in writing.</span></li>
+        </ol>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button type="button" class="btn btn-maroon" id="bookBtn">Book a consultation slot</button>
+          <button type="button" class="btn btn-ghost" id="againBtn">Start a new enquiry</button>
+        </div>
+        <details class="dev">
+          <summary>For developers: data sent to the firm's inbox or CRM</summary>
+          <pre id="payload"></pre>
+        </details>
+      </div>
+    </div>
+
+    <div class="actions" id="actions">
+      <button type="button" class="btn btn-ghost" id="backBtn">Back</button>
+      <span class="save-state" id="saveState" aria-live="polite"></span>
+      <button type="button" class="btn btn-primary" id="nextBtn">Continue</button>
+    </div>
+  </form>
+</main>
+
+<p class="poc">Proof of concept for the Ansh Legal contact page. Submissions are simulated and not sent anywhere. Try pre-selecting a service from a practice-area page: <a href="?service=financial-regulatory">?service=financial-regulatory</a>, <a href="?service=dispute-resolution">?service=dispute-resolution</a>.</p>
+
+<script>
+(function(){
+  var SERVICES = [
+    {id:'corporate',  name:'Corporate',            team:'Corporate team',            d:'Setting up, buying, selling or restructuring a company', slug:'corporate'},
+    {id:'commercial', name:'General commercial',   team:'Commercial team',           d:'Drafting, reviewing or negotiating contracts', slug:'general-commercial'},
+    {id:'finance',    name:'Finance',              team:'Finance team',              d:'Loans, fund structures, security and financing deals', slug:'finance'},
+    {id:'regulatory', name:'Financial regulatory', team:'Financial Regulatory team', d:'Licences, approvals and compliance with ADGM, DIFC and other regulators', slug:'financial-regulatory'},
+    {id:'disputes',   name:'Dispute resolution',   team:'Dispute Resolution team',   d:'A disagreement, claim, court case or arbitration', slug:'dispute-resolution'},
+    {id:'private',    name:'Private clients',      team:'Private Clients team',      d:'Wills, family matters, property and personal wealth', slug:'private-clients'},
+    {id:'unsure',     name:"I'm not sure yet",     team:'',                          d:"Describe your situation and we'll point you to the right team", slug:''}
+  ];
+  var SITUATIONS = [
+    {v:'corporate',  n:'I want to start or grow a business in the UAE or UK'},
+    {v:'commercial', n:'I need a contract written or checked'},
+    {v:'regulatory', n:'I need a licence to offer financial services'},
+    {v:'finance',    n:'I\u2019m raising money or setting up a fund'},
+    {v:'disputes',   n:'Someone owes me money or broke an agreement'},
+    {v:'private',    n:'I\u2019m planning for my family or estate'},
+    {v:'general',    n:'None of these'}
+  ];
+  var STEP_NAMES = ['About you','Your matter','Details','Timing and contact','Your details','Review'];
+  var CLIENT = {individual:'Myself or my family',startup:'Startup or small business',company:'Established company',institution:'Financial institution or fund'};
+  var OFFICE = {uae:'Abu Dhabi, UAE',uk:'London, UK',both:'Abu Dhabi and London',any:'No preference'};
+  var URG = {urgent:'Urgent (within 48 hours)',soon:'In the next few weeks',exploring:'Just exploring'};
+  var SLA = {urgent:'4 business hours',soon:'1 business day',exploring:'2 business days'};
+
+  var form = document.getElementById('form');
+  var steps = Array.prototype.slice.call(form.querySelectorAll('.step'));
+  var current = 0, maxReached = 0, submitted = false;
+  var STORE = 'ansh-enquiry-draft';
+
+  function h(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+  // Build service + situation cards
+  document.getElementById('serviceChoices').innerHTML = SERVICES.map(function(s,i){
+    return '<div class="choice'+(s.id==='unsure'?' unsure':'')+'"><input type="radio" name="service" id="sv'+i+'" value="'+s.id+'"><label for="sv'+i+'"><span class="n">'+h(s.name)+'</span><span class="d">'+h(s.d)+'</span></label></div>';
+  }).join('');
+  document.getElementById('situationChoices').innerHTML = SITUATIONS.map(function(s,i){
+    return '<div class="choice'+(s.v==='general'?' unsure':'')+'"><input type="radio" name="situation" id="si'+i+'" value="'+s.v+'"><label for="si'+i+'"><span class="n">'+h(s.n)+'</span></label></div>';
+  }).join('');
+
+  function val(name){
+    var el = form.elements[name]; if(!el) return '';
+    if(el.type==='checkbox') return el.checked;
+    return (el.value||'').trim ? el.value.trim() : el.value;
+  }
+  function svc(id){for(var i=0;i<SERVICES.length;i++) if(SERVICES[i].id===id) return SERVICES[i]; return null}
+  function effectiveService(){
+    var s = val('service');
+    if(s==='unsure'){ var sit = val('situation'); return sit || ''; }
+    return s;
+  }
+  function labelFor(name){
+    var el = form.querySelector('input[name="'+name+'"]:checked');
+    if(!el) return '';
+    var n = el.nextElementSibling.querySelector('.n'); return n ? n.textContent : el.value;
+  }
+
+  function syncConditional(){
+    var s = val('service');
+    var ub = document.getElementById('unsureBlock');
+    ub.hidden = s!=='unsure';
+    var eff = effectiveService();
+    var note = document.getElementById('routeNote');
+    if(s==='unsure' && eff){
+      note.className = 'route-note show';
+      note.textContent = eff==='general'
+        ? 'No problem. A senior lawyer will review your enquiry and pass it to the right team.'
+        : 'Thanks. We\u2019ll send this to our '+svc(eff).team+'.';
+    } else note.className = 'route-note';
+    form.querySelectorAll('[data-for]').forEach(function(b){ b.hidden = b.getAttribute('data-for')!==eff; });
+    var sv = svc(eff);
+    document.getElementById('detailsLede').textContent = sv && sv.id!=='unsure'
+      ? 'A few specifics help our '+sv.team+' prepare before contacting you.'
+      : 'A short description helps us route your enquiry to the right lawyer.';
+    var isInd = val('clientType')==='individual';
+    var cf = document.getElementById('companyField');
+    cf.hidden = isInd;
+  }
+
+  function isVisible(el){ return !el.closest('[hidden]'); }
+
+  function validateStep(i){
+    var step = steps[i], ok = true, firstBad = null;
+    step.querySelectorAll('[data-required]').forEach(function(fs){
+      if(!isVisible(fs)) return;
+      var name = fs.getAttribute('data-required');
+      var good = !!form.querySelector('input[name="'+name+'"]:checked');
+      fs.classList.toggle('invalid', !good);
+      if(!good){ ok=false; firstBad = firstBad || fs.querySelector('input'); }
+    });
+    step.querySelectorAll('[data-required-field]').forEach(function(f){
+      if(!isVisible(f)) return;
+      var name = f.getAttribute('data-required-field'), v = val(name), good = !!v;
+      if(name==='email') good = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+      if(name==='phone') { var d = String(v).replace(/\D/g,''); good = d.length>=7 && d.length<=15; }
+      if(name==='summary') good = String(v).length>=20;
+      f.classList.toggle('invalid', !good);
+      if(!good){ ok=false; firstBad = firstBad || f.querySelector('input,select,textarea'); }
+    });
+    if(i===4){
+      var cf = document.getElementById('companyField');
+      var need = !cf.hidden && val('clientType')!=='individual';
+      var good = !need || !!val('company');
+      cf.classList.toggle('invalid', !good);
+      if(!good){ ok=false; firstBad = firstBad || document.getElementById('company'); }
+    }
+    if(firstBad) firstBad.focus();
+    return ok;
+  }
+
+  // Clear error on change
+  form.addEventListener('input', onChange);
+  form.addEventListener('change', onChange);
+  function onChange(e){
+    var w = e.target.closest('.invalid'); if(w) w.classList.remove('invalid');
+    if(e.target.name==='summary') document.getElementById('sumCount').textContent = e.target.value.length;
+    syncConditional(); renderRail(); saveDraft();
+    if(e.type==='change' && e.target.name==='service' && e.target.value==='unsure') document.getElementById('unsureBlock').scrollIntoView({behavior:'smooth',block:'center'});
+  }
+
+  function summaryFor(i){
+    switch(i){
+      case 0: return CLIENT[val('clientType')]||'';
+      case 1: var s=val('service'); if(!s) return ''; if(s==='unsure'){ var e=effectiveService(); return e&&e!=='general' ? 'Suggested: '+svc(e).name : 'Routed by a senior lawyer'; } return svc(s).name;
+      case 2: var t = val('summary'); return t ? (t.length>42? t.slice(0,42)+'\u2026' : t) : '';
+      case 3: return [OFFICE[val('office')], val('urgency') ? URG[val('urgency')].split(' (')[0] : ''].filter(Boolean).join(', ');
+      case 4: return val('fullName');
+      default: return '';
+    }
+  }
+
+  function renderRail(){
+    var list = document.getElementById('stepList');
+    list.innerHTML = STEP_NAMES.map(function(n,i){
+      var cls = submitted ? 'done' : (i===current ? 'current' : (i<=maxReached && i<current ? 'done' : (i<=maxReached ? 'done' : '')));
+      if(!submitted && i===current) cls='current';
+      var sum = (cls==='done') ? summaryFor(i) : '';
+      return '<li class="'+cls+'"><span class="dot">'+(cls==='done'?'\u2713':(i+1))+'</span><button type="button" data-go="'+i+'" '+(cls==='done'&&!submitted?'':'tabindex="-1" aria-disabled="true"')+'><span class="t">'+n+'</span>'+(sum?'<span class="v">'+h(sum)+'</span>':'')+'</button></li>';
+    }).join('');
+    var idx = Math.min(current, 5);
+    document.getElementById('mpLabel').textContent = submitted ? 'Complete' : 'Step '+(idx+1)+' of 6';
+    document.getElementById('mpName').textContent = submitted ? 'Enquiry sent' : STEP_NAMES[idx];
+    document.getElementById('mpBar').style.width = submitted ? '100%' : Math.round((idx+1)/6*100)+'%';
+  }
+  document.getElementById('stepList').addEventListener('click', function(e){
+    var b = e.target.closest('[data-go]'); if(!b || submitted) return;
+    var i = +b.getAttribute('data-go'); if(i>maxReached || i===current) return;
+    for(var k=current;k<i;k++){ if(!validateStep(k)){ if(k!==current) go(k), validateStep(k); return; } }
+    go(i);
+  });
+
+  function go(i, quiet){
+    current = i; maxReached = Math.max(maxReached, i);
+    steps.forEach(function(s,k){ s.classList.toggle('active', k===i); });
+    document.getElementById('actions').style.display = i===6 ? 'none' : '';
+    document.getElementById('backBtn').style.visibility = i===0 ? 'hidden' : 'visible';
+    document.getElementById('nextBtn').textContent = i===5 ? 'Send enquiry' : (i===4 ? 'Review enquiry' : 'Continue');
+    if(i===5) buildReview();
+    renderRail();
+    if(quiet){ renderRail(); return; }
+    var h2 = steps[i].querySelector('h2'); if(h2){ h2.setAttribute('tabindex','-1'); h2.focus({preventScroll:true}); }
+    var top = form.getBoundingClientRect().top + window.scrollY - 100;
+    if(window.scrollY > top) window.scrollTo({top:top, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto':'smooth'});
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', function(){
+    if(current===5){ submit(); return; }
+    if(!validateStep(current)) return;
+    go(current+1);
+  });
+  document.getElementById('backBtn').addEventListener('click', function(){ if(current>0) go(current-1); });
+
+  function detailRows(){
+    var eff = effectiveService(), r = [];
+    if(eff==='corporate'){ r.push(['Type of work',labelFor('corpType')]); if(val('corpWhere')) r.push(['Location',val('corpWhere')]); }
+    if(eff==='commercial'){ r.push(['Needed',labelFor('commType')]); if(val('commKind')) r.push(['Agreement',val('commKind')]); }
+    if(eff==='finance'){ r.push(['Transaction',labelFor('finType')]); if(val('finValue')) r.push(['Deal size',val('finValue')]); }
+    if(eff==='regulatory'){ r.push(['Regulator',val('regulator')]); r.push(['Stage',labelFor('regStage')]); }
+    if(eff==='disputes'){ r.push(['Stage',labelFor('dispStage')]); r.push(['Other party',val('opposing')]); if(val('deadline')) r.push(['Deadline',val('deadline')]); }
+    if(eff==='private'){ r.push(['About',labelFor('privType')]); }
+    r.push(['Description',val('summary')]);
+    return r;
+  }
+
+  function buildReview(){
+    var s = val('service'), eff = effectiveService();
+    var areaTxt = s==='unsure' ? (eff==='general' ? 'Not sure, to be routed by a senior lawyer' : 'Not sure, suggested '+svc(eff).name) : svc(s).name;
+    var sections = [
+      {t:'About you', go:0, rows:[['Enquiring for',CLIENT[val('clientType')]]]},
+      {t:'Your matter', go:1, rows:[['Area',areaTxt]]},
+      {t:'Details', go:2, rows:detailRows()},
+      {t:'Timing and contact', go:3, rows:[['Office',OFFICE[val('office')]],['Urgency',URG[val('urgency')]],['Contact by',val('contactPref')],['Best time',val('bestTime')||'Any time in office hours']]},
+      {t:'Your details', go:4, rows:[['Name',val('fullName')]].concat(val('clientType')!=='individual'?[['Company',val('company')]]:[]).concat([['Email',val('email')],['Phone',val('dial')+' '+val('phone')]])}
+    ];
+    document.getElementById('review').innerHTML = sections.map(function(sec){
+      return '<section><div class="hd"><h3>'+sec.t+'</h3><button type="button" class="edit" data-edit="'+sec.go+'">Edit<span class="sr" style="position:absolute;left:-9999px"> '+sec.t+'</span></button></div><dl>'+
+        sec.rows.map(function(r){return '<dt>'+h(r[0])+'</dt><dd>'+h(r[1]||'Not provided')+'</dd>'}).join('')+'</dl></section>';
+    }).join('');
+  }
+  document.getElementById('review').addEventListener('click', function(e){
+    var b = e.target.closest('[data-edit]'); if(b) go(+b.getAttribute('data-edit'));
+  });
+
+  function routeOffice(){
+    var o = val('office');
+    if(o==='uae') return 'Abu Dhabi (ADGM)';
+    if(o==='uk') return 'London';
+    if(o==='both') return 'Abu Dhabi and London';
+    if(val('regulator')==='UK, FCA' || val('dial')==='+44') return 'London';
+    return 'Abu Dhabi (ADGM)';
+  }
+
+  function submit(){
+    var btn = document.getElementById('nextBtn');
+    btn.disabled = true; btn.textContent = 'Sending\u2026';
+    setTimeout(function(){
+      var eff = effectiveService();
+      var team = eff==='general' || !eff ? 'Intake (senior lawyer review)' : svc(eff).team;
+      var ref = 'AL-'+new Date().getFullYear()+'-'+String(Math.floor(1000+Math.random()*9000));
+      var office = routeOffice();
+      var payload = {
+        reference: ref,
+        submittedAt: new Date().toISOString(),
+        routing: {
+          team: team,
+          office: office,
+          priority: val('urgency')==='urgent' ? 'high' : (val('urgency')==='soon' ? 'normal' : 'low'),
+          responseTarget: SLA[val('urgency')],
+          notifyEmail: (eff && eff!=='general' ? eff : 'intake') + '@anshlegal.com'
+        },
+        client: { type: val('clientType'), name: val('fullName'), company: val('clientType')!=='individual' ? val('company') : null, email: val('email'), phone: val('dial')+' '+val('phone'), preferredContact: val('contactPref'), bestTime: val('bestTime')||null, source: val('heard')||null },
+        matter: { selectedService: val('service'), routedService: eff, situation: val('service')==='unsure' ? val('situation') : null, details: detailRows().reduce(function(o,r){o[r[0]]=r[1];return o},{}) },
+        conflictCheck: eff==='disputes' ? { opposingParty: val('opposing') } : null,
+        consent: val('consent'),
+        utm: { landing: location.search || null }
+      };
+      document.getElementById('dName').textContent = val('fullName').split(' ')[0];
+      document.getElementById('dRef').textContent = ref;
+      document.getElementById('dEmail').textContent = val('email');
+      document.getElementById('dRoute').textContent = 'Your enquiry has gone to our '+team.replace(' (senior lawyer review)',' team for senior lawyer review')+' in '+office+'.';
+      document.getElementById('dSla').textContent = 'A lawyer will contact you by '+({'Phone call':'phone','Email':'email','WhatsApp':'WhatsApp'})[val('contactPref')]+' within '+SLA[val('urgency')]+'.';
+      document.getElementById('payload').textContent = JSON.stringify(payload, null, 2);
+      submitted = true; btn.disabled = false;
+      try{ localStorage.removeItem(STORE); }catch(e){}
+      go(6);
+    }, 900);
+  }
+
+  document.getElementById('bookBtn').addEventListener('click', function(){
+    alert('In the live site this opens the booking calendar (for example Calendly or Microsoft Bookings) for the '+document.getElementById('dRoute').textContent.replace('Your enquiry has gone to our ','').split(' in ')[0]+'.');
+  });
+  document.getElementById('againBtn').addEventListener('click', function(){
+    form.reset(); submitted=false; maxReached=0; document.getElementById('sumCount').textContent='0';
+    syncConditional(); go(0);
+  });
+
+  // Draft save / restore
+  var saveTimer;
+  function saveDraft(){
+    if(submitted) return;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function(){
+      var data = {};
+      Array.prototype.forEach.call(form.elements, function(el){
+        if(!el.name) return;
+        if(el.type==='radio'){ if(el.checked) data[el.name]=el.value; }
+        else if(el.type==='checkbox') data[el.name]=el.checked;
+        else data[el.name]=el.value;
+      });
+      try{ localStorage.setItem(STORE, JSON.stringify({d:data,step:current,max:maxReached})); document.getElementById('saveState').textContent='Draft saved on this device'; }catch(e){}
+    }, 400);
+  }
+  function restore(){
+    var raw=null; try{ raw = localStorage.getItem(STORE); }catch(e){}
+    if(!raw) return false;
+    try{
+      var s = JSON.parse(raw);
+      Object.keys(s.d||{}).forEach(function(k){
+        var els = form.querySelectorAll('[name="'+k+'"]');
+        els.forEach(function(el){
+          if(el.type==='radio') el.checked = el.value===s.d[k];
+          else if(el.type==='checkbox') el.checked = !!s.d[k];
+          else el.value = s.d[k];
+        });
+      });
+      document.getElementById('sumCount').textContent = (val('summary')||'').length;
+      maxReached = Math.min(s.max||0,5);
+      document.getElementById('saveState').textContent='Draft restored';
+      return Math.min(s.step||0,5);
+    }catch(e){ return false; }
+  }
+
+  // URL pre-selection (?service=slug)
+  var start = restore() || 0;
+  var q = new URLSearchParams(location.search).get('service');
+  if(q){
+    var match = SERVICES.filter(function(s){return s.slug===q || s.id===q})[0];
+    if(match){ var r = form.querySelector('input[name="service"][value="'+match.id+'"]'); if(r) r.checked = true; }
+  }
+  syncConditional();
+  go(start, true);
+})();
+</script>
+</body>
+</html>
